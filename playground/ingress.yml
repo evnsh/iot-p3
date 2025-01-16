@@ -2,17 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: wil-playground-ingress
-  namespace: wil
+  namespace: dev
+  annotations:
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
 spec:
-  ingressClassName: traefik
   rules:
-    - host: wil.com
-      http:
+    - http:
         paths:
-          - path: /
+          - path: "/"
             pathType: Prefix
             backend:
               service:
-                name: wil-playground-svc
+                name: wil-playground-service
                 port:
                   number: 8888
