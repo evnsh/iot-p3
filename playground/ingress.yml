@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wil-playground-ingress
+  namespace: wil
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: wil.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wil-playground-svc
+                port:
+                  number: 8888
